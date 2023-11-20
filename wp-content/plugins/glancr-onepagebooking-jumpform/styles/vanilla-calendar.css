@@ -1,0 +1,51 @@
+.vanilla-calendar {
+    border-radius: 0;
+}
+
+@media screen and (max-width: 25.875rem) {
+    .vanilla-calendar {
+        width: 100svw;
+        position: fixed;
+        bottom: 0;
+        left: 0 !important;
+        top: unset !important;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (min-width: 48rem) {
+    .vanilla-calendar {
+        min-width: 18.125rem;
+    }
+}
+
+.vanilla-calendar-custom-header {
+    margin: -1rem -1rem 0 -1rem;
+}
+
+.vanilla-calendar-controls {
+    z-index: 1;
+}
+
+@media screen and (max-width: 32rem) {
+    .vanilla-calendar-controls {
+        position: relative;
+        top: 1.625rem;
+        padding-top: 0;
+    }
+}
+
+.vanilla-calendar-custom-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 7.5rem;
+    width: 100%;
+    padding: 1.875rem;
+    background-color: white;
+    text-align: center;
+}
+
+#mobile-calendar-selection {
+    margin-bottom: 0.75rem;
+}
