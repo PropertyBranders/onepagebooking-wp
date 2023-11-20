@@ -28,7 +28,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="form__group form__group--shadow form__group--flex" onclick="showDialog()">
+        <fieldset class="form__group form__group--shadow form__group--flex" id="guest-selection-trigger">
 	        <?php echo file_get_contents($svg_path . 'guests.svg'); ?>
             <span><input data-display="adults-counter" name="adults" id="adults" class="input--disabled text--bold"
                          value="2" readonly tabindex="-1" />&nbsp;<label for="adults">Erwachsene</label></span><span><input
@@ -46,7 +46,7 @@
 <dialog id="guest-selection" class="popover">
     <p class="popover__heading popover__section">
         <span>Belegung</span>
-        <button type="button" onclick="closeDialog()" class="popover__close">
+        <button type="button" onclick="this.closest('dialog').close('cancel')" class="popover__close">
 	        <?php echo file_get_contents($svg_path . 'close.svg'); ?>
         </button>
     </p>
@@ -54,19 +54,19 @@
         <section class="popover__section popover__section--flex">
             <label for="adults-counter" autofocus>Erwachsene</label>
             <div class="stepper">
-                <button type="button" class="stepper__button" onclick="decrement('adults-counter')">–</button>
+                <button type="button" class="stepper__button" data-decrement="adults-counter">–</button>
                 <input type="number" name="adults-counter" id="adults-counter" required min="1" max="30" value="2" disabled
                        class="stepper__input">
-                <button type="button" class="stepper__button" onclick="increment('adults-counter')">+</button>
+                <button type="button" class="stepper__button" data-increment="adults-counter">+</button>
             </div>
         </section>
 
         <section class="popover__section popover__section--flex">
             <label for="children-counter">Kinder</label>
             <div class="stepper">
-                <button type="button" class="stepper__button" onclick="decrement('children-counter')">–</button>
+                <button type="button" class="stepper__button" data-decrement="children-counter">–</button>
                 <input type="number" name="children-counter" id="children-counter" max="10" value="0" disabled class="stepper__input">
-                <button type="button" class="stepper__button" onclick="increment('children-counter')">+</button>
+                <button type="button" class="stepper__button" data-increment="children-counter">+</button>
             </div>
         </section>
 
