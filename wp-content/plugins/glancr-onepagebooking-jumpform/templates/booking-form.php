@@ -27,6 +27,9 @@
                     </b>
                 </div>
             </div>
+            <!-- hidden inputs filled from calendar widget. We cannot require hidden fields. -->
+            <input type="hidden" id="arrival" name="arrival" />
+            <input type="hidden" id="departure" name="departure" />
         </fieldset>
         <fieldset class="form__group form__group--shadow form__group--flex" id="guest-selection-trigger">
 	        <?php echo file_get_contents($svg_path . 'guests.svg'); ?>
@@ -35,9 +38,6 @@
                         data-display="children-counter" name="children" id="children" value="0" readonly tabindex="-1" class="input--disabled text--bold" />&nbsp;<label>Kinder</label></span>
         </fieldset>
 
-        <!-- hidden inputs filled from calendar widget. We cannot require hidden fields. -->
-        <input type="hidden" id="arrival" name="arrival" />
-        <input type="hidden" id="departure" name="departure" />
         <input type="hidden" value="" id="ages" name="ages" />
 
         <input type="submit" class="form__group form__submit" value="Suchen"/>
