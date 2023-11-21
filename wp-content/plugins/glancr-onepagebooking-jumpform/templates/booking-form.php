@@ -39,7 +39,7 @@
         </fieldset>
 
         <input type="hidden" value="" id="ages" name="ages" />
-
+    <input type="hidden" value="true" name="filter" />
         <input type="submit" class="form__group form__submit" value="Suchen"/>
     </form>
 
