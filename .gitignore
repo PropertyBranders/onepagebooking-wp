@@ -1,0 +1,8 @@
+/wp-admin
+/wp-includes
+/*.php
+/wp-content/*
+!/wp-content/plugins
+/wp-content/plugins/*
+!/wp-content/plugins/glancr-onepagebooking-jumpform
+
