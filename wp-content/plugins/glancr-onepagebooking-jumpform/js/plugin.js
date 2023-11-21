@@ -2,13 +2,7 @@ import {calendar} from './vanilla-calendar.js';
 
 function showDialog(event) {
     dialog.show();
-    event.stopPropagation();
-    window.addEventListener('click', (event) => {
-        if (!dialog.contains(event.target)) {
-            dialog.close();
-            window.removeEventListener('click', this)
-        }
-    })
+    event.stopImmediatePropagation();
 }
 
 function closeDialog() {
@@ -42,10 +36,10 @@ function increment(event) {
 
 function toggleChildrenAgeInputSection(event) {
     const inputAmount = event.target.valueAsNumber;
-    document.getElementById('children-section').style.display = inputAmount > 0 ? 'block': 'none';
+    document.getElementById('children-section').style.display = inputAmount > 0 ? 'block' : 'none';
 }
 
-function addChildrenAgeInput(event) {
+function manageChildrenAgeInputs(event) {
     const inputAmount = event.target.valueAsNumber;
     const ageInputContainer = dialog.querySelector('#children-age-inputs');
     const existingInputs = ageInputContainer.childElementCount;
@@ -66,25 +60,23 @@ function addChildrenAgeInput(event) {
             for (let i = 0; i < 18; i++) {
                 newInput.add(new Option(i + ' Jahre alt', i.toString()))
             }
-            // We wrap the select inside a container for the cross-browser chevron.
-            let container = document.createElement('div');
-            container.classList.add('select-list__select');
 
             // Label for improved accessibility.
             let newLabel = document.createElement('label');
-            newLabel.innerText = `Alter für das ${i + 1}. Kind`;
+            newLabel.innerHTML = `<span class="select-list__sr-label">Alter für das ${i + 1}. Kind</span>`;
+            newLabel.htmlFor = 'age-input-child-' + (i + 1);
             newLabel.classList.add('select-list__label');
+            newLabel.classList.add('fade');
 
-            container.appendChild(newLabel);
-            container.appendChild(newInput);
-            ageInputContainer.appendChild(container);
+            newLabel.appendChild(newInput);
+            ageInputContainer.appendChild(newLabel);
         }
     }
 }
 
 function fillHiddenInputsFromDialog(event) {
     const dialogForm = event.target.querySelector('form');
-    const ageInputs = dialogForm.querySelectorAll('#children-age-inputs > select');
+    const ageInputs = dialogForm.querySelectorAll('#children-age-inputs select');
     agesParameterInput.value = Array.from(ageInputs).map(input => input.value).join(',');
 }
 
@@ -95,10 +87,16 @@ const childrenCounter = dialog.querySelector('#children-counter');
 const agesParameterInput = form.querySelector('#ages');
 
 form.querySelector('#guest-selection-trigger').addEventListener('click', showDialog);
+window.addEventListener('click', (event) => {
+    if (dialog.open && !dialog.contains(event.target)) {
+        dialog.close();
+    }
+})
 
-childrenCounter.addEventListener('input', addChildrenAgeInput);
+childrenCounter.addEventListener('input', manageChildrenAgeInputs);
 childrenCounter.addEventListener('input', toggleChildrenAgeInputSection);
 dialog.addEventListener('close', fillHiddenInputsFromDialog);
+
 dialog.querySelectorAll('.stepper__button[data-increment]').forEach(button => button.addEventListener('click', increment));
 dialog.querySelectorAll('.stepper__button[data-decrement]').forEach(button => button.addEventListener('click', decrement));
 
