@@ -1,5 +1,6 @@
 .vanilla-calendar {
     border-radius: 0;
+    overscroll-behavior-y: contain;
 }
 
 @media screen and (max-width: 25.875rem) {
@@ -20,25 +21,14 @@
 }
 
 .vanilla-calendar-custom-header {
-    margin: -1rem -1rem 0 -1rem;
+    margin: -1rem -1rem 1rem -1rem;
 }
 
 .vanilla-calendar-controls {
     z-index: 1;
 }
 
-@media screen and (max-width: 32rem) {
-    .vanilla-calendar-controls {
-        position: relative;
-        top: 1.625rem;
-        padding-top: 0;
-    }
-}
-
 .vanilla-calendar-custom-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     height: 7.5rem;
     width: 100%;
     padding: 1.875rem;
@@ -48,4 +38,5 @@
 
 #mobile-calendar-selection {
     margin-bottom: 0.75rem;
+    font-size: 0.75rem;
 }

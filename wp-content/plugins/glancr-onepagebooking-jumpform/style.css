@@ -87,11 +87,22 @@ input {
     border: none;
     background-color: white;
     width: 100svw;
-    height: 75svh;
+    min-height: 56.125svh;
+    height: max-content;
+    max-height: 80svh;
     position: fixed;
     bottom: 0;
-    overflow: scroll;
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.50);
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+}
+
+/* Prevent scrolling the body underneath when the dialog has focus. */
+@media (max-width: 32rem) {
+    html:has(dialog[open]) {
+        overflow: hidden;
+    }
+
 }
 
 .vanilla-calendar:not(.vanilla-calendar_hidden),
@@ -111,9 +122,14 @@ input {
     }
 }
 
+@keyframes fade-in {
+    to { opacity: 1 }
+}
+
 @media screen and (min-width: 48rem) {
     .popover {
         max-width: 24rem;
+        min-height: unset;
         height: initial;
         position: absolute;
         left: 25.25%;
@@ -121,7 +137,8 @@ input {
         margin-top: .25rem;
     }
 
-    .popover[open] {
+    .popover[open],
+    .vanilla-calendar:not(.vanilla-calendar_hidden) {
         animation: none;
     }
 }
@@ -143,6 +160,10 @@ input {
     border-radius: 50%;
     height: 1.375rem;
     width: 1.375rem;
+}
+
+.popover__close:focus-visible {
+    outline: none;
 }
 
 .popover__section {
@@ -180,17 +201,32 @@ input {
     margin-top: 0.75rem;
 }
 
-.select-list__input {
+.select-list__label {
+    animation: fade-in 0.5s forwards;
     background-color: var(--color--light, rgba(233, 233, 236, 1));
+    background-image: url("../svg/chev.svg");
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    background-position: right 0.125rem center;
     border-radius: 0.125rem;
     border-width: 0;
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.50);
-    padding: 0.375rem;
     height: 2.25rem;
-    appearance: none;
-    width: 100%;
+    opacity: 0;
 }
-.select-list__label {
+
+.select-list__input:active {
+    background-color: rgba(233, 233, 236, 0.8);
+}
+
+.select-list__input {
+    appearance: none;
+    border: none;
+    width: 100%;
+    background: transparent;
+    padding: 0.5625rem;
+}
+.select-list__sr-label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -201,19 +237,8 @@ input {
     border: 0;
 }
 
-.select-list__select {
-    position: relative;
-}
-
 .select-list__select:has(:invalid) {
     border: 1px solid #FF0000;
-}
-
-
-.select-list__select::after {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><path d="M0.114068205,0.160968581 C0.198216054,0.0698802226 0.313360103,0.00022441888 0.428825633,0.00022441888 C0.533066093,0.00022441888 0.637279762,0.0378921343 0.719766622,0.114084867 L6.00010446,4.96587951 L11.2804423,0.114084867 C11.4545782,-0.0466592952 11.7262303,-0.036612785 11.8861675,0.138362594 C12.0469084,0.312502103 12.0360316,0.582820203 11.8623082,0.743564366 L6.28995777,5.88737757 C6.12503763,6.03976303 5.87310309,6.03976303 5.70807579,5.88737757 L0.135725359,0.743564366 C-0.0357958738,0.605694098 -0.0466726732,0.335108091 0.114068205,0.160968581 Z" transform="translate(12 15)"/></svg>');
-    background-size: 0.7rem;
-    background-position: right 0.7rem center;
 }
 
 .stepper {
@@ -221,6 +246,7 @@ input {
     border-radius: 0.125rem;
     background-color: var(--color--light, rgba(233, 233, 236, 1));
     height: 2.25rem;
+    touch-action: manipulation;
 }
 
 .stepper__button {
@@ -229,6 +255,7 @@ input {
     padding: 0.5rem;
     background: inherit;
     cursor: pointer;
+    color: inherit;
 }
 
 /**
