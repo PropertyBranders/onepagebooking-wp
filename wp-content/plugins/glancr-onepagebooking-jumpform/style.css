@@ -204,7 +204,7 @@ input {
 .select-list__label {
     animation: fade-in 0.5s forwards;
     background-color: var(--color--light, rgba(233, 233, 236, 1));
-    background-image: url("../svg/chev.svg");
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><path d="M0.114068205,0.160968581 C0.198216054,0.0698802226 0.313360103,0.00022441888 0.428825633,0.00022441888 C0.533066093,0.00022441888 0.637279762,0.0378921343 0.719766622,0.114084867 L6.00010446,4.96587951 L11.2804423,0.114084867 C11.4545782,-0.0466592952 11.7262303,-0.036612785 11.8861675,0.138362594 C12.0469084,0.312502103 12.0360316,0.582820203 11.8623082,0.743564366 L6.28995777,5.88737757 C6.12503763,6.03976303 5.87310309,6.03976303 5.70807579,5.88737757 L0.135725359,0.743564366 C-0.0357958738,0.605694098 -0.0466726732,0.335108091 0.114068205,0.160968581 Z" transform="translate(12 15)"/></svg>');
     background-repeat: no-repeat;
     background-size: 1.25rem;
     background-position: right 0.125rem center;
@@ -213,19 +213,18 @@ input {
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.50);
     height: 2.25rem;
     opacity: 0;
-}
-
-.select-list__input:active {
-    background-color: rgba(233, 233, 236, 0.8);
+    display: flex;
+    align-items: center;
 }
 
 .select-list__input {
     appearance: none;
     border: none;
+    border-radius: inherit;
     width: 100%;
     background: transparent;
-    padding: 0.5625rem;
 }
+
 .select-list__sr-label {
     position: absolute;
     width: 1px;
@@ -237,7 +236,7 @@ input {
     border: 0;
 }
 
-.select-list__select:has(:invalid) {
+.select-list__label:has(:invalid) {
     border: 1px solid #FF0000;
 }
 

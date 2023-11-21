@@ -58,7 +58,7 @@ function manageChildrenAgeInputs(event) {
             defaultSelection.disabled = true;
             newInput.add(defaultSelection);
             for (let i = 0; i < 18; i++) {
-                newInput.add(new Option(i + ' Jahre alt', i.toString()))
+                newInput.add(new Option(i + ' Jahre', i.toString()))
             }
 
             // Label for improved accessibility.
