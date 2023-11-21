@@ -11,7 +11,7 @@ wp_register_script( 'VanillaCalendarInit', src: plugin_dir_url( __FILE__ ) . 'js
 
 wp_register_style('VanillaCalendar', 'https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css');
 wp_register_style('VanillaCalendarLightTheme', 'https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/themes/light.min.css');
-wp_register_style('GlancrOnepagebookingJumpform', plugin_dir_url( __FILE__ ) . '/style.css');
+wp_register_style('GlancrOnepagebookingJumpform', plugin_dir_url( __FILE__ ) . 'style.css');
 
 /**
  * Filter multiple scripts to add type=“module”.
@@ -35,7 +35,7 @@ function add_type_to_js_scripts($tag, $handle, $source){
 function opb_jumpform_shortcode( $attributes = [], $content = null ): string {
 	wp_enqueue_style( 'VanillaCalendar' );
 	wp_enqueue_style( 'VanillaCalendarLightTheme' );
-	wp_enqueue_style( 'GlancrOnepagebookingJumpform', ver: time(), deps: true );
+	wp_enqueue_style( 'GlancrOnepagebookingJumpform' );
 
 	wp_enqueue_script( 'VanillaCalendar' );
 	wp_enqueue_script(
