@@ -35,7 +35,7 @@
 	        <?php echo file_get_contents($svg_path . 'guests.svg'); ?>
             <span><input data-display="adults-counter" name="adults" id="adults" class="input--disabled text--bold"
                          value="2" readonly tabindex="-1" />&nbsp;<label for="adults">Erwachsene</label></span><span><input
-                        data-display="children-counter" name="children" id="children" value="0" readonly tabindex="-1" class="input--disabled text--bold" />&nbsp;<label>Kinder</label></span>
+                        data-display="children-counter" name="children" id="children" value="0" readonly tabindex="-1" class="input--disabled text--bold" />&nbsp;<label for="children">Kinder</label></span>
         </fieldset>
 
         <input type="hidden" value="" id="ages" name="ages" />
