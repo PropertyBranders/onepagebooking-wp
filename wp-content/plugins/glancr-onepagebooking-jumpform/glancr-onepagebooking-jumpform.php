@@ -32,7 +32,23 @@ function add_type_to_js_scripts($tag, $handle, $source){
 	}
 }
 
-function opb_jumpform_shortcode( $attributes = [], $content = null ): string {
+function opb_jumpform_shortcode( $attributes = [], $content = "bla", $tag = '' ): string {
+	$attributes = array_change_key_case( (array) $attributes );
+
+	// override default attributes with user attributes
+	$opbj_attributes = shortcode_atts(
+		array(
+			'slug' => '',
+			'button_text' => 'Suchen',
+		), $attributes, $tag
+	);
+
+	if (empty($opbj_attributes['slug'])) {
+		return 'Bitte slug-Parameter im Shortcode eingeben: <code>[opbj-form slug="mein-hotel-slug"]</code>';
+	}
+
+	$opbj_attributes['slug'] = sanitize_title($attributes['slug']);
+
 	wp_enqueue_style( 'VanillaCalendar' );
 	wp_enqueue_style( 'VanillaCalendarLightTheme' );
 	wp_enqueue_style( 'GlancrOnepagebookingJumpform' );
@@ -52,6 +68,8 @@ function opb_jumpform_shortcode( $attributes = [], $content = null ): string {
 	);
 
 	$svg_path = plugin_dir_path( __FILE__) . 'svg/';
+
+	['slug' => $slug, 'button_text' => $button_text] = $opbj_attributes;
 
 	ob_start();
 	require_once('templates/booking-form.php');
