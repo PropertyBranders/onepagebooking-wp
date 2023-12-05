@@ -4,5 +4,4 @@
 /wp-content/*
 !/wp-content/plugins
 /wp-content/plugins/*
-!/wp-content/plugins/glancr-onepagebooking-jumpform
-
+!/wp-content/plugins/onepagebooking-form

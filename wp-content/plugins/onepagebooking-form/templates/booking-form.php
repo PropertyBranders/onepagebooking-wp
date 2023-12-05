@@ -2,14 +2,14 @@
 /**
 * @var string $svg_path  Path to the plugin SVG icons with trailing slash.
  * @var string|null $content  Optional pass-through content from wrapping shortcode usage.
- * @var string $slug  onepagebooking.com/<slug> to use as a form destination.
+ * @var string $url  onepagebooking.com URL to use as a form destination.
  * @var string $button_text Text for the submit button.
  */
 	if ($content) {
 		echo '<p><?php _e($content) ?></p>';
 	}
 ?>
-<form id="opbj-form" class="form" action="https://onepagebooking.com/<?php echo $slug; ?>" target="_blank">
+<form id="opbj-form" class="form" action="<?php echo esc_url($url, protocols: ['https']); ?>" target="_blank">
         <fieldset id="calendar" class="calendar form__group form__group--shadow">
             <div class="calendar__date">
                 <?php echo file_get_contents($svg_path . 'checkin.svg'); ?>
