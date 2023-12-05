@@ -94,7 +94,7 @@ function register_custom_post_type(): void {
 function add_form_settings_meta_box(): void {
 	add_meta_box(
 		id:       'opbf_meta_box',
-		title:    __( 'Formular-Einstellungen' ),
+		title:    __( 'Form settings' ),
 		callback: __NAMESPACE__ . '\build_meta_box_callback',
 		screen:   'opbf_form'
 	);
