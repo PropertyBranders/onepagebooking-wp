@@ -4,4 +4,4 @@
 /wp-content/*
 !/wp-content/plugins
 /wp-content/plugins/*
-!/wp-content/plugins/onepagebooking-form
+!/wp-content/plugins/onepagebooking-wp
