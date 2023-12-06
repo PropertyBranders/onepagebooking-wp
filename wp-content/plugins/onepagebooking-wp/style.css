@@ -1,5 +1,6 @@
-@layer plugin, theme;
 @import './styles/vanilla-calendar.css';
+
+@layer plugin, theme;
 
 * {
     margin: 0;
