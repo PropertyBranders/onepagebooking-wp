@@ -2,7 +2,7 @@ function switchToGuestModal() {
     form.querySelector('#guest-selection-trigger').click();
 }
 
-const options = {
+let options = {
     input: true,
     type: 'multiple',
     months: 2,
@@ -43,7 +43,7 @@ const options = {
                 if (mobileFooter) {
                     const arrival = Date.parse(dates[0]);
                     const departure = Date.parse(dates.at(-1));
-                    const difference  = (departure - arrival) / 86400000;
+                    const difference = (departure - arrival) / 86400000;
                     mobileFooter.querySelector('#mobile-calendar-selection').innerText = `${germanDatePopoverFormatter.format(arrival)} – ${germanDatePopoverFormatter.format(departure)} (${difference} Nächte)`;
                     const footerButton = mobileFooter.querySelector('button');
                     footerButton.disabled = false;
@@ -69,8 +69,8 @@ if (window.innerWidth <= 500) {
             calendar.reset();
             element.classList.add('vanilla-calendar_hidden');
         })
-    },
-        options.type = 'default',
+    };
+    options.type = 'default';
     options.DOMTemplates = {
         default: `
       <header class="vanilla-calendar-custom-header popover__heading popover__section">
@@ -101,11 +101,15 @@ if (window.innerWidth <= 500) {
         <button type="button" class="form__submit button" disabled>Weiter</button>
       </footer>
     `
-    }
+    };
 }
 
 const form = document.forms['opbj-form'];
-const germanDateFormatter = new Intl.DateTimeFormat('de-DE', { year: "numeric", month: "2-digit", day: "2-digit"});
-const germanDateDisplayFormatter = new Intl.DateTimeFormat('de-DE', {weekday: 'short', day: 'numeric', 'month': 'short'});
+const germanDateFormatter = new Intl.DateTimeFormat('de-DE', {year: "numeric", month: "2-digit", day: "2-digit"});
+const germanDateDisplayFormatter = new Intl.DateTimeFormat('de-DE', {
+    weekday: 'short',
+    day: 'numeric',
+    'month': 'short'
+});
 const germanDatePopoverFormatter = new Intl.DateTimeFormat('de-DE', {day: 'numeric', month: 'short', year: 'numeric'})
 export let calendar = new VanillaCalendar('#calendar', options);
