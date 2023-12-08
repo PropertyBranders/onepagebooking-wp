@@ -9,16 +9,18 @@ use function wp_nonce_field;
 use function wp_verify_nonce;
 use function wp_register_style;
 use function plugin_dir_url;
+use function wp_get_theme;
 
 // Function to display help text
 function display_custom_post_type_help_text(): void {
 	global $pagenow;
 
 	// Check if we are on the edit.php page for your custom post type
-	if ($pagenow === 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] === 'opbf_form') {
+	if ( $pagenow === 'edit.php' && isset( $_GET['post_type'] ) && $_GET['post_type'] === 'opbf_form' ) {
 		?>
         <div class="notice notice-info">
-            <p><? _e('Create a booking form, then use it anywhere on a page/post with its shortcode as listed below.', 'opbf_form') ?></p>
+            <p><? _e( 'Create a booking form, then use it anywhere on a page/post with its shortcode as listed below.',
+			          'opbf_form' ) ?></p>
         </div>
 		<?php
 	}
@@ -226,6 +228,11 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 	wp_enqueue_style( 'VanillaCalendar' );
 	wp_enqueue_style( 'GlancrOnepagebookingJumpform' );
 
+    // The Salient theme adds lots of resets, z-index details etc. Add common overrides for the plugin to work OOTB.
+    if (wp_get_theme()->get_template() === 'salient') {
+	    enqueue_salient_css_overrides();
+    }
+
 	wp_enqueue_script( 'VanillaCalendar' );
 	wp_enqueue_script(
 		      'glancr-onepagebooking-jumpform-script',
@@ -250,4 +257,12 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 	ob_get_clean();
 
 	return $form;
+}
+
+function enqueue_salient_css_overrides(): void {
+	wp_enqueue_style(
+		handle: 'onepagebooking-wp-salient-overrides',
+		src:    plugin_dir_url( __FILE__ ) . 'css/salient-overrides.css',
+		deps:   [ 'GlancrOnepagebookingJumpform' ]
+	);
 }

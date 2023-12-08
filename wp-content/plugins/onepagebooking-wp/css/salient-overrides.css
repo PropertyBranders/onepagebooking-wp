@@ -1,0 +1,93 @@
+/*
+ * Style overrides when this plugin is used with ThemeNectar's Salient theme (or a child theme of it).
+ */
+#opbj-form .calendar {
+    text-align: left;
+    font-size: 0.875rem !important;
+    line-height: 1.2;
+}
+
+#opbj-form .form__selection {
+    margin-top: 0.125rem;
+    line-height: 1.6;
+    font-weight: 700;
+}
+
+#opbj-form input[type="submit"],
+#guest-selection input[type="submit"] {
+    padding: 0.75rem;
+    font-family: unset;
+    border: none;
+    line-height: inherit;
+}
+
+#guest-selection input[type="number"] {
+    background-color: unset;
+    border: none;
+    line-height: initial;
+    padding: 0;
+    font-family: Helvetica, Sans-serif;
+    font-size: inherit;
+    color: inherit;
+}
+
+#opbj-form label {
+    font-size: inherit !important;
+}
+
+#guest-selection {
+    text-align: left;
+}
+
+#guest-selection .button {
+    width: 100%;
+}
+
+#guest-selection .select-list__input {
+    line-height: initial;
+    color: #06070C;
+}
+
+@media screen and (min-width: 48rem) {
+    #guest-selection {
+        left: 28.25%;
+    }
+
+    #guest-selection .button {
+        width: auto;
+    }
+}
+
+.vanilla-calendar {
+    z-index: 30;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.50);
+    width: 580px !important;
+    border-radius: 0.125rem !important;
+}
+
+.vanilla-calendar[data-calendar-theme="light"] .vanilla-calendar-day__btn_today,
+.vanilla-calendar[data-calendar-theme="light"] .vanilla-calendar-day__btn_today:hover {
+    color: #4b4f63;
+}
+
+.vanilla-calendar[data-calendar-theme="light"] .vanilla-calendar-day__btn_today {
+    background-color: rgba(75, 79, 99, 0.3);
+}
+
+.vanilla-calendar[data-calendar-theme="light"] .vanilla-calendar-day__btn_selected,
+.vanilla-calendar[data-calendar-theme="light"] .vanilla-calendar-day__btn_selected:hover {
+    background-color: #4b4f63;
+}
+
+.vanilla-calendar[data-calendar-theme="light"] .vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate,
+.vanilla-calendar[data-calendar-theme="light"] .vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate:hover {
+    background-color: #E9E9EC;
+    color: #06070C;
+}
+
+.vanilla-calendar-custom-footer .form__submit {
+    font-weight: 500;
+    font-size: 17px;
+    text-transform: uppercase;
+    padding: 15px 22px !important;
+}
