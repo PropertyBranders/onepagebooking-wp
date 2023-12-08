@@ -91,3 +91,19 @@
     text-transform: uppercase;
     padding: 15px 22px !important;
 }
+
+/**
+ * Fix text color specificity problem with Salient's light theme.
+ */
+.light .popover p {
+    color: inherit;
+}
+
+/**
+ * Fixes z-index issues with the popover dialog.
+ * Parent elements will have their z-index increased above Salient's default 11/12 values, so that the
+ * popover itself is not inhibited inside its parent.
+ */
+*:has(.popover) {
+    z-index: 15;
+}
