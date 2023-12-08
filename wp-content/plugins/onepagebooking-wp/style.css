@@ -87,6 +87,7 @@ input {
 .popover {
     border: none;
     background-color: white;
+    color: black;
     width: 100svw;
     min-height: 56.125svh;
     height: max-content;
