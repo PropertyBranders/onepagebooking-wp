@@ -1,4 +1,4 @@
-@import './styles/vanilla-calendar.css';
+@import './css/vanilla-calendar.css';
 
 @layer plugin, theme;
 
