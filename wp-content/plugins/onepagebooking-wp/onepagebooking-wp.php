@@ -4,6 +4,7 @@
  * Description: Enhance your hotel website with a reusable booking form which integrates with onepagebooking.com.
  * Author: GLANCR labs UG
  * Author URI: https://glancr-labs.de
+ * Version: 1.0.0
  */
 
 namespace Glancr\OnepagebookingForm;
