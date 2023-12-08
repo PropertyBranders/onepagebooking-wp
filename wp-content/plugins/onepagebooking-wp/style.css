@@ -29,8 +29,6 @@ input {
 @media screen and (min-width: 48rem) {
     .form {
         grid-template-columns: 42.962963% 37.925926% auto;
-        width: 100%;
-        max-width: 44.8125rem;
     }
 }
 
