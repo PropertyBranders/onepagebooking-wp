@@ -140,17 +140,19 @@ function build_meta_box_callback( $post ): void {
     <p><label for="opbf_url">URL</label></p>
     <p>
         <input
-                type="url"
+                type="text"
                 id="opbf_url"
                 name="opbf_url"
                 required
-                placeholder="https://onepagebooking.com/mein-hotel"
-                pattern="https://onepagebooking.com/.*"
-                title="Bitte fügen Sie die vollständige URL ein, zB. https://onepagebooking.com/deine-url"
+                placeholder="https://onepagebooking.com/mein-hotel oder /buchen/"
+                pattern="https://onepagebooking.com/.*|/.*/"
+                title="Bitte fügen Sie entweder die vollständige URL ein, zB. https://onepagebooking.com/deine-url, oder die Unterseite der OPB-Booking-Engine"
                 style="width: 100%"
                 value="<?php echo esc_url( $url ); ?>"
         />
-        <span style="color: grey; font-size: smaller; display: block; margin-top: 0.5rem">Bitte fügen Sie die vollständige URL ein, zB. <code>https://onepagebooking.com/deine-url</code></span>
+        <span style="color: grey; font-size: smaller; display: block; margin-top: 0.5rem">
+            Bitte fügen Sie die vollständige URL ein, zB. <code>https://onepagebooking.com/deine-url</code>. Wenn Sie die Onepagebooking-Engine als Unterseite eingebunden haben, dann geben Sie die relative URL ein, z.B. <code>/buchen/</code>.
+        </span>
     </p>
     <p><label for="opbf_button_text">Button-Text</label></p>
     <p>
