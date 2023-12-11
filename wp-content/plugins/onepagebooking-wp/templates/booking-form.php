@@ -35,8 +35,8 @@
         </fieldset>
         <fieldset class="form__group form__group--shadow form__group--flex" id="guest-selection-trigger">
 	        <?php echo file_get_contents($svg_path . 'guests.svg'); ?>
-            <span><input data-display="adults-counter" name="adults" id="adults" class="input--disabled text--bold"
-                         value="2" readonly tabindex="-1" />&nbsp;<label for="adults">Erwachsene</label></span><span><input
+            <span class="counter__wrapper"><input data-display="adults-counter" name="adults" id="adults" class="input--disabled text--bold"
+                         value="2" readonly tabindex="-1" />&nbsp;<label for="adults">Erwachsene</label></span><span class="counter__wrapper"><input
                         data-display="children-counter" name="children" id="children" value="0" readonly tabindex="-1" class="input--disabled text--bold" />&nbsp;<label for="children">Kinder</label></span>
         </fieldset>
 

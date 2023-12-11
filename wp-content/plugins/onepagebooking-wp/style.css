@@ -82,6 +82,31 @@ input {
     font-weight: 700;
 }
 
+.counter__wrapper {
+    display: inline-flex;
+}
+
+.counter__wrapper label {
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#guest-selection-trigger {
+    container-name: counter-wrapper;
+    container-type: inline-size;
+}
+
+@container counter-wrapper (width < 17rem) {
+    .counter__wrapper {
+        max-width: 40%;
+    }
+
+    .counter__wrapper:first-of-type {
+        flex-shrink: 2;
+    }
+}
+
 .popover {
     border: none;
     background-color: white;
