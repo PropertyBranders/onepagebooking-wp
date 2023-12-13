@@ -1,9 +1,9 @@
 <?php
 /*
- * Plugin Name: OnePageBooking©️ Direct Booking Form
- * Description: Enhance your hotel website with a reusable booking form which integrates with onepagebooking.com.
- * Author: GLANCR labs UG
- * Author URI: https://glancr-labs.de
+ * Plugin Name: OnePageBooking WP
+ * Description: OnePageBooking WP ist ein WordPress-Plugin zur Anbindung der OnePageBooking Engine von HNS. Bieten Sie Ihren Kunden ein neues Erlebnis mit einer nahtlosen Buchungsstrecke.
+ * Author: Property Branders GmbH
+ * Author URI: https://property-branders.de/
  * Version: 1.0.0
  */
 
