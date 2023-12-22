@@ -120,6 +120,7 @@ input {
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.50);
     overflow-y: scroll;
     overscroll-behavior-y: contain;
+    z-index: 1;
 }
 
 /* Prevent scrolling the body underneath when the dialog has focus. */
