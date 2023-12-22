@@ -107,7 +107,3 @@
 .wpb_row>.span_12:has(.popover) {
     z-index: 15;
 }
-
-.vc_row:has(.popover), .vc_row:has(.popover) * {
-    overflow: visible;
-}
