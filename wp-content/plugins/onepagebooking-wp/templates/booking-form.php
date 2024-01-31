@@ -14,18 +14,18 @@
             <div class="calendar__date">
                 <?php echo file_get_contents($svg_path . 'checkin.svg'); ?>
                 <div>
-                    <div class="date__label">Anreise</div>
+                    <div class="date__label"><?php _e('Arrival', 'onepagebooking-wp'); ?></div>
                     <b id="arrival-formatted" class="form__selection">
-                        wählen
+	                    <?php _e('choose', 'onepagebooking-wp'); ?>
                     </b>
                 </div>
             </div>
             <div class="calendar__date">
 	            <?php echo file_get_contents($svg_path . 'checkout.svg'); ?>
                 <div>
-                    <div class="date__label">Abreise</div>
+                    <div class="date__label"><?php _e('Departure', 'onepagebooking-wp'); ?></div>
                     <b id="departure-formatted" class="form__selection">
-                        wählen
+                        <?php _e('choose', 'onepagebooking-wp'); ?>
                     </b>
                 </div>
             </div>
@@ -36,12 +36,13 @@
         <fieldset class="form__group form__group--shadow form__group--flex" id="guest-selection-trigger">
 	        <?php echo file_get_contents($svg_path . 'guests.svg'); ?>
             <span class="counter__wrapper"><input data-display="adults-counter" name="adults" id="adults" class="input--disabled text--bold"
-                         value="2" readonly tabindex="-1" />&nbsp;<label for="adults">Erwachsene</label></span><span class="counter__wrapper"><input
-                        data-display="children-counter" name="children" id="children" value="0" readonly tabindex="-1" class="input--disabled text--bold" />&nbsp;<label for="children">Kinder</label></span>
+                         value="2" readonly tabindex="-1" />&nbsp;<label for="adults"><?php _e('Adults', 'onepagebooking-wp'); ?></label></span><span class="counter__wrapper"><input
+                        data-display="children-counter" name="children" id="children" value="0" readonly tabindex="-1" class="input--disabled text--bold" />&nbsp;<label for="children"><?php _e('Children', 'onepagebooking-wp') ?></label></span>
         </fieldset>
 
         <input type="hidden" value="" id="ages" name="ages" />
     <input type="hidden" value="true" name="filter" />
+    <input type="hidden" value="<?php echo get_locale(); ?>" name="lang" />
         <input type="submit" class="form__group form__submit" value="<?php esc_html_e($button_text); ?>"/>
     </form>
 
@@ -54,7 +55,7 @@
     </p>
     <form method="dialog" id="guest-selection-form">
         <section class="popover__section popover__section--flex">
-            <label for="adults-counter" autofocus>Erwachsene</label>
+            <label for="adults-counter" autofocus><?php _e('Adults', 'onepagebooking-wp'); ?></label>
             <div class="stepper">
                 <button type="button" class="stepper__button" data-decrement="adults-counter">–</button>
                 <input type="number" name="adults-counter" id="adults-counter" required min="1" max="30" value="2" disabled
@@ -64,7 +65,7 @@
         </section>
 
         <section class="popover__section popover__section--flex">
-            <label for="children-counter">Kinder</label>
+            <label for="children-counter"><?php _e('Children', 'onepagebooking-wp'); ?></label>
             <div class="stepper">
                 <button type="button" class="stepper__button" data-decrement="children-counter">–</button>
                 <input type="number" name="children-counter" id="children-counter" max="10" value="0" disabled class="stepper__input">
@@ -73,16 +74,14 @@
         </section>
 
         <section class="popover__section" id="children-section" style="display: none">
-            <p class="section__heading">Alter der Kinder beim Checkout</p>
+            <p class="section__heading"><?php _e('Children\'s age at checkout', 'onepagebooking-wp') ?></p>
             <p>
-                Bitte geben Sie das richtige Alter Ihrer Kinder beim Checkout an. Das hilft uns den für Sie besten
-                Preis und
-                alle wichtigen Optionen anzuzeigen.
+                <?php _e('Please enter the correct age of your children at checkout. This will help us to show you the best price and all important options.', 'onepagebooking-wp'); ?>
             </p>
             <div id="children-age-inputs" class="select-list"></div>
         </section>
         <section class="popover__section">
-            <button type="submit" class="form__submit button">Weiter</button>
+            <button type="submit" class="form__submit button"><?php _e('Continue', 'onepagebooking-wp'); ?></button>
         </section>
     </form>
 </dialog>

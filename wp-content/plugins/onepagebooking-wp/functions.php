@@ -208,7 +208,7 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 	$opbf_attributes = shortcode_atts(
 		[
 			'url'         => '',
-			'button_text' => 'Suchen',
+			'button_text' => __('Search', 'onepagebooking-wp'),
 			'id'          => null,
 		],
 		$attributes,
@@ -268,3 +268,7 @@ function enqueue_salient_css_overrides(): void {
 		deps:   [ 'GlancrOnepagebookingJumpform' ]
 	);
 }
+
+function load_textdomain(): void {
+	    load_plugin_textdomain( 'onepagebooking-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+    }

@@ -2,6 +2,8 @@
 /*
  * Plugin Name: OnePageBooking WP
  * Description: OnePageBooking WP ist ein WordPress-Plugin zur Anbindung der OnePageBooking Engine von HNS. Bieten Sie Ihren Kunden ein neues Erlebnis mit einer nahtlosen Buchungsstrecke.
+ * Text Domain: onepagebooking-wp
+ * Domain Path: /languages
  * Author: Property Branders GmbH
  * Author URI: https://property-branders.de/
  * Version: 1.0.0
@@ -29,3 +31,6 @@ add_action( 'admin_notices', __NAMESPACE__ . '\display_custom_post_type_help_tex
 register_assets();
 add_filter( 'script_loader_tag', __NAMESPACE__ . '\set_module_type_for_scripts', 10, 3 );
 add_shortcode( 'opb_jumpform', __NAMESPACE__ . '\render_shortcode' );
+
+// Translations.
+add_action( 'init', __NAMESPACE__. '\load_textdomain' );
