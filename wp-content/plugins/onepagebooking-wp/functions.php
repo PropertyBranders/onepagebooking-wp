@@ -218,7 +218,7 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 	// If user has passed a form ID, attempt to load its metadata.
 	if ( ! is_null( $post_id = $opbf_attributes['id'] ) ) {
 		$opbf_attributes['url']         = get_post_meta( $post_id, '_opbf_url', single: true );
-		$opbf_attributes['button_text'] = get_post_meta( $post_id, '_opbf_button_text', single: true );
+		$opbf_attributes['button_text'] = get_post_meta( $post_id, '_opbf_button_text', single: true ) ?: $opbf_attributes['button_text'];
 	}
 
 	if ( empty( $opbf_attributes['url'] ) ) {
