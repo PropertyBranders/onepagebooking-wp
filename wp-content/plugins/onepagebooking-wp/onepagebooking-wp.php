@@ -34,3 +34,5 @@ add_shortcode( 'opb_jumpform', __NAMESPACE__ . '\render_shortcode' );
 
 // Translations.
 add_action( 'init', __NAMESPACE__. '\load_textdomain' );
+
+add_filter( 'pll_get_post_types', __NAMESPACE__ . '\make_custom_post_type_translatable', 10, 2 );

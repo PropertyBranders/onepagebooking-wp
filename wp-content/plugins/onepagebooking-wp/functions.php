@@ -272,3 +272,14 @@ function enqueue_salient_css_overrides(): void {
 function load_textdomain(): void {
 	    load_plugin_textdomain( 'onepagebooking-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
     }
+
+function make_custom_post_type_translatable( $post_types, $is_settings ) {
+	if ( $is_settings ) {
+		// hides 'opbf_form' from the list of custom post types in Polylang settings
+		unset( $post_types['opbf_form'] );
+	} else {
+		// enables language and translation management for 'opbf_form'
+		$post_types['opbf_form'] = 'opbf_form';
+	}
+	return $post_types;
+}
