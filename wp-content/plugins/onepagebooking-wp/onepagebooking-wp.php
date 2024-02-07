@@ -6,7 +6,7 @@
  * Domain Path: /languages
  * Author: Property Branders GmbH
  * Author URI: https://property-branders.de/
- * Version: 1.0.0
+ * Version: 1.1.0
  */
 
 namespace Glancr\OnepagebookingForm;
