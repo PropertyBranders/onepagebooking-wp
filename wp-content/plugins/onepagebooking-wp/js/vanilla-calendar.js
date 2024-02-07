@@ -2,13 +2,15 @@ function switchToGuestModal() {
     form.querySelector('#guest-selection-trigger').click();
 }
 
+const locale = document.documentElement.lang || 'de-DE';
+
 let options = {
     input: true,
     type: 'multiple',
     months: 2,
     jumpMonths: 1,
     settings: {
-        lang: 'de',
+        lang: locale || 'de-DE',
         range: {
             disablePast: true,
         },
@@ -27,8 +29,8 @@ let options = {
             if (dates.length > 0) {
                 const startDate = Date.parse(dates[0]);
                 // onepagebooking requires dd.mm.yyyy format instead of a sane standard.
-                form.elements.namedItem('arrival').value = germanDateFormatter.format(startDate);
-                calendar.HTMLInputElement.querySelector('#arrival-formatted').innerText = germanDateDisplayFormatter.format(startDate);
+                form.elements.namedItem('arrival').value = dateFormatter.format(startDate);
+                calendar.HTMLInputElement.querySelector('#arrival-formatted').innerText = dateDisplayFormatter.format(startDate);
             } else {
                 form.elements.namedItem('arrival').value = '';
             }
@@ -36,15 +38,15 @@ let options = {
             if (dates.length > 1) {
                 const endDate = Date.parse(dates.at(-1));
                 // onepagebooking requires dd.mm.yyyy format instead of a sane standard.
-                form.elements.namedItem('departure').value = germanDateFormatter.format(endDate);
-                calendar.HTMLInputElement.querySelector('#departure-formatted').innerHTML = germanDateDisplayFormatter.format(endDate);
+                form.elements.namedItem('departure').value = dateFormatter.format(endDate);
+                calendar.HTMLInputElement.querySelector('#departure-formatted').innerHTML = dateDisplayFormatter.format(endDate);
 
                 const mobileFooter = calendar.HTMLElement.querySelector('.vanilla-calendar-custom-footer');
                 if (mobileFooter) {
                     const arrival = Date.parse(dates[0]);
                     const departure = Date.parse(dates.at(-1));
                     const difference = (departure - arrival) / 86400000;
-                    mobileFooter.querySelector('#mobile-calendar-selection').innerText = `${germanDatePopoverFormatter.format(arrival)} – ${germanDatePopoverFormatter.format(departure)} (${difference} Nächte)`;
+                    mobileFooter.querySelector('#mobile-calendar-selection').innerText = `${datePopoverFormatter.format(arrival)} – ${datePopoverFormatter.format(departure)} (${difference} Nächte)`;
                     const footerButton = mobileFooter.querySelector('button');
                     footerButton.disabled = false;
                     footerButton.addEventListener('click', () => {
@@ -105,11 +107,11 @@ if (window.innerWidth <= 500) {
 }
 
 const form = document.forms['opbj-form'];
-const germanDateFormatter = new Intl.DateTimeFormat('de-DE', {year: "numeric", month: "2-digit", day: "2-digit"});
-const germanDateDisplayFormatter = new Intl.DateTimeFormat('de-DE', {
+const dateFormatter = new Intl.DateTimeFormat(locale, {year: "numeric", month: "2-digit", day: "2-digit"});
+const dateDisplayFormatter = new Intl.DateTimeFormat(locale, {
     weekday: 'short',
     day: 'numeric',
     'month': 'short'
 });
-const germanDatePopoverFormatter = new Intl.DateTimeFormat('de-DE', {day: 'numeric', month: 'short', year: 'numeric'})
+const datePopoverFormatter = new Intl.DateTimeFormat(locale, {day: 'numeric', month: 'short', year: 'numeric'})
 export let calendar = new VanillaCalendar('#calendar', options);
