@@ -5,3 +5,7 @@
 !/wp-content/plugins
 /wp-content/plugins/*
 !/wp-content/plugins/onepagebooking-wp
+/.DS_Store
+/license.txt
+/readme.html
+/.idea
