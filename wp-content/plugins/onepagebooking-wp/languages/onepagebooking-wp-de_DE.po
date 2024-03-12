@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: GLANCR labs WordPress plugin OnePageBooking©️ Form "
 "v1.0.0\n"
 "Report-Msgid-Bugs-To: GLANCR labs team <kontakt@glancr.de>\n"
-"POT-Creation-Date: 2024-01-31 23:51+0100\n"
+"POT-Creation-Date: 2024-03-12 22:36+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Tobias Grasse <tg@glancr.de>\n"
 "Language-Team: \n"
@@ -48,7 +48,7 @@ msgstr "Button-Text"
 msgid "Usage"
 msgstr "Nutzung"
 
-#: functions.php:211
+#: functions.php:228
 msgid "Search"
 msgstr "Suchen"
 
@@ -64,19 +64,23 @@ msgstr "Wählen"
 msgid "Departure"
 msgstr "Abreise"
 
-#: templates/booking-form.php:39 templates/booking-form.php:57
+#: templates/booking-form.php:41 templates/booking-form.php:65
 msgid "Adults"
 msgstr "Erwachsene"
 
-#: templates/booking-form.php:40 templates/booking-form.php:67
+#: templates/booking-form.php:45 templates/booking-form.php:76
 msgid "Children"
 msgstr "Kinder"
 
-#: templates/booking-form.php:76
+#: templates/booking-form.php:48
+msgid "Booking code"
+msgstr "Buchungscode"
+
+#: templates/booking-form.php:86
 msgid "Children's age at checkout"
 msgstr "Alter der Kinder beim Checkout"
 
-#: templates/booking-form.php:78
+#: templates/booking-form.php:88
 msgid ""
 "Please enter the correct age of your children at checkout. This will help us "
 "to show you the best price and all important options."
@@ -84,7 +88,7 @@ msgstr ""
 "Bitte geben Sie das richtige Alter Ihrer Kinder beim Checkout an. Das hilft "
 "uns den für Sie besten Preis und alle wichtigen Optionen anzuzeigen."
 
-#: templates/booking-form.php:83
+#: templates/booking-form.php:93
 msgid "Continue"
 msgstr "Weiter"
 

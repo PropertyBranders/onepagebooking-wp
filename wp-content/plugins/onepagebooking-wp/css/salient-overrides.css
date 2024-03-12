@@ -35,6 +35,13 @@
     font-size: inherit !important;
 }
 
+#opbj-form .input--standalone {
+    background-color: white;
+    font-size: inherit;
+    border: none;
+    border-radius: 0.125rem;
+}
+
 #guest-selection {
     text-align: left;
 }

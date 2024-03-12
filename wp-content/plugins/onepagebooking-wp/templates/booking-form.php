@@ -4,12 +4,13 @@
  * @var string|null $content Optional pass-through content from wrapping shortcode usage.
  * @var string $url onepagebooking.com URL to use as a form destination.
  * @var string $button_text Text for the submit button.
+ * @var boolean $show_booking_code Whether the booking code input should be rendered.
  */
 if ( $content ) {
 	echo '<p><?php _e($content) ?></p>';
 }
 ?>
-<form id="opbj-form" class="form" action="<?php echo esc_url( $url, protocols: [ 'https' ] ); ?>" target="_blank">
+<form id="opbj-form" class="form<?php if ($show_booking_code): echo ' has-booking-code'; endif; ?>" action="<?php echo esc_url( $url, protocols: [ 'https' ] ); ?>" target="_blank">
 	<fieldset id="calendar" class="calendar form__group form__group--shadow">
 		<div class="calendar__date">
 			<?php echo file_get_contents( $svg_path . 'checkin.svg' ); ?>
@@ -44,6 +45,11 @@ if ( $content ) {
 					class="input--disabled text--bold"/>&nbsp;<label
 					for="children"><?php _e( 'Children', 'onepagebooking-wp' ) ?></label></span>
 	</fieldset>
+
+	<?php if ($show_booking_code): ?>
+	<label class="show-for-sr" for="bookingcode"><?php _e( 'Booking code', 'onepagebooking-wp' ); ?></label>
+	<input class="input--standalone" type="text" name="bookingcode" id="bookingcode" placeholder="<?php _e( 'Booking code', 'onepagebooking-wp' ); ?>"/>
+	<?php endif; ?>
 
 	<input type="hidden" value="" id="ages" name="ages"/>
 	<input type="hidden" value="true" name="filter"/>

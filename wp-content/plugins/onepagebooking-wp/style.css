@@ -28,7 +28,11 @@ input {
 
 @media screen and (min-width: 48rem) {
     .form {
-        grid-template-columns: 42.962963% 37.925926% auto;
+        grid-template-columns: minmax(30%, 290px) minmax(35%, 256px) auto;
+    }
+
+    .form.has-booking-code {
+        grid-template-columns: minmax(30%, 290px) minmax(35%, 256px) auto auto;
     }
 }
 
@@ -302,6 +306,18 @@ input {
     margin: 0;
 }
 
+.input--standalone {
+    padding: 0.75rem;
+    border-radius: 0.125rem;
+    border: none;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.50);
+    text-align: center;
+}
+
+.input--standalone::placeholder {
+    color: inherit;
+}
 
 .input--disabled {
     background-color: inherit;
@@ -324,4 +340,15 @@ input {
 
 #guest-selection-trigger {
     cursor: pointer;
+}
+
+.show-for-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

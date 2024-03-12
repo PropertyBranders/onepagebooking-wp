@@ -238,6 +238,7 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 		$opbf_attributes['url']         = get_post_meta( $post_id, '_opbf_url', single: true );
 		$opbf_attributes['button_text'] = get_post_meta( $post_id, '_opbf_button_text',
 			single: true ) ?: $opbf_attributes['button_text'];
+		$opbf_attributes['show_booking_code'] = get_post_meta( $post_id, '_opbf_show_booking_code', single: true );
 	}
 
 	if ( empty( $opbf_attributes['url'] ) ) {
@@ -270,7 +271,7 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 
 	$svg_path = plugin_dir_path( __FILE__ ) . 'svg/';
 
-	[ 'url' => $url, 'button_text' => $button_text ] = $opbf_attributes;
+	[ 'url' => $url, 'button_text' => $button_text, 'show_booking_code' => $show_booking_code ] = $opbf_attributes;
 
 	ob_start();
 	require( 'templates/booking-form.php' );
