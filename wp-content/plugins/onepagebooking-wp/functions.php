@@ -18,24 +18,24 @@ function display_custom_post_type_help_text(): void {
 	// Check if we are on the edit.php page for your custom post type
 	if ( $pagenow === 'edit.php' && isset( $_GET['post_type'] ) && $_GET['post_type'] === 'opbf_form' ) {
 		?>
-        <div class="notice notice-info">
-            <p><? _e( 'Create a booking form, then use it anywhere on a page/post with its shortcode as listed below.',
-			          'opbf_form' ) ?></p>
-        </div>
+		<div class="notice notice-info">
+			<p><? _e( 'Create a booking form, then use it anywhere on a page/post with its shortcode as listed below.',
+					'opbf_form' ) ?></p>
+		</div>
 		<?php
 	}
 }
 
 function register_assets(): void {
 	wp_register_script( 'VanillaCalendar',
-	                    'https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js' );
+		'https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js' );
 	wp_register_script( 'glancr-onepagebooking-jumpform-script', src: plugin_dir_url( __FILE__ ) . 'js/plugin.js',
-		deps:           [ 'VanillaCalendar' ] );
+		deps: [ 'VanillaCalendar' ] );
 	wp_register_script( 'VanillaCalendarInit', src: plugin_dir_url( __FILE__ ) . 'js/vanilla-calendar.js',
-		deps:           [ 'VanillaCalendar' ] );
+		deps: [ 'VanillaCalendar' ] );
 
 	wp_register_style( 'VanillaCalendar',
-	                   'https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css' );
+		'https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css' );
 	wp_register_style( 'GlancrOnepagebookingJumpform', plugin_dir_url( __FILE__ ) . 'style.css' );
 }
 
@@ -95,17 +95,17 @@ function register_custom_post_type(): void {
 // register meta box
 function add_form_settings_meta_box(): void {
 	add_meta_box(
-		id:       'opbf_meta_box',
-		title:    __( 'Form settings' ),
+		id: 'opbf_meta_box',
+		title: __( 'Form settings' ),
 		callback: __NAMESPACE__ . '\build_meta_box_callback',
-		screen:   'opbf_form'
+		screen: 'opbf_form'
 	);
 }
 
 /**
  * Registers meta field columns on the booking form index view.
  *
- * @param  array<string, string>  $columns  Existing columns of this table view.
+ * @param array<string, string> $columns Existing columns of this table view.
  */
 function add_settings_columns( array $columns ): array {
 	return array_merge(
@@ -134,31 +134,45 @@ function settings_column_content( string $column_name, int $post_id ): void {
 // build meta box
 function build_meta_box_callback( $post ): void {
 	wp_nonce_field( __NAMESPACE__ . '\save_meta_box_data', 'opbf_meta_box_nonce' );
-	$url         = get_post_meta( $post->ID, '_opbf_url', true );
-	$button_text = get_post_meta( $post->ID, '_opbf_button_text', true );
+	$url               = get_post_meta( $post->ID, '_opbf_url', true );
+	$button_text       = get_post_meta( $post->ID, '_opbf_button_text', true );
+	$show_booking_code = metadata_exists( 'post', $post->ID, '_opbf_show_booking_code' ) ? get_post_meta( $post->ID, '_opbf_show_booking_code', true ) : true;
 	?>
-    <p><label for="opbf_url">URL</label></p>
-    <p>
-        <input
-                type="text"
-                id="opbf_url"
-                name="opbf_url"
-                required
-                placeholder="https://onepagebooking.com/mein-hotel oder /buchen/"
-                pattern="https://onepagebooking.com/.*|/.*/"
-                title="Bitte fügen Sie entweder die vollständige URL ein, zB. https://onepagebooking.com/deine-url, oder die Unterseite der OPB-Booking-Engine"
-                style="width: 100%"
-                value="<?php echo esc_url( $url ); ?>"
-        />
-        <span style="color: grey; font-size: smaller; display: block; margin-top: 0.5rem">
+	<p><label for="opbf_url">URL</label></p>
+	<p>
+		<input
+				type="text"
+				id="opbf_url"
+				name="opbf_url"
+				required
+				placeholder="https://onepagebooking.com/mein-hotel oder /buchen/"
+				pattern="https://onepagebooking.com/.*|/.*/"
+				title="Bitte fügen Sie entweder die vollständige URL ein, zB. https://onepagebooking.com/deine-url, oder die Unterseite der OPB-Booking-Engine"
+				style="width: 100%"
+				value="<?php echo esc_url( $url ); ?>"
+		/>
+		<span style="color: grey; font-size: smaller; display: block; margin-top: 0.5rem">
             Bitte fügen Sie die vollständige URL ein, zB. <code>https://onepagebooking.com/deine-url</code>. Wenn Sie die Onepagebooking-Engine als Unterseite eingebunden haben, dann geben Sie die relative URL ein, z.B. <code>/buchen/</code>.
         </span>
-    </p>
-    <p><label for="opbf_button_text">Button-Text</label></p>
-    <p>
-        <input type="text" id="opbf_button_text" name="opbf_button_text"
-               value="<?php echo esc_attr( $button_text ); ?>"/>
-    </p>
+	</p>
+
+	<p>
+		<input type="checkbox"
+			   switch
+			   id="opbf_show_booking_code"
+			   name="opbf_show_booking_code" <?php echo $show_booking_code ? 'checked' : null; ?>
+		/>
+		<label for="opbf_show_booking_code">Eingabefeld für Buchungscode anzeigen</label>
+		<span style="color: grey; font-size: smaller; display: block; margin-top: 0.5rem">
+            Zeigt im Formular ein Eingabefeld für einen OnePageBooking-Buchungscode an.
+        </span>
+	</p>
+
+	<p><label for="opbf_button_text">Button-Text</label></p>
+	<p>
+		<input type="text" id="opbf_button_text" name="opbf_button_text"
+			   value="<?php echo esc_attr( $button_text ); ?>"/>
+	</p>
 	<?php
 }
 
@@ -183,21 +197,24 @@ function save_meta_box_data( $post_id ): void {
 	if ( ! isset( $_POST['opbf_button_text'] ) ) {
 		return;
 	}
+	// Unchecked input opbf_show_booking_code may be missing, which implies false.
 
 
-	$url         = sanitize_text_field( $_POST['opbf_url'] );
-	$button_text = sanitize_text_field( $_POST['opbf_button_text'] );
+	$url               = sanitize_text_field( $_POST['opbf_url'] );
+	$button_text       = sanitize_text_field( $_POST['opbf_button_text'] );
+	$show_booking_code = boolval( $_POST['opbf_show_booking_code'] ) ?? false;
 
 	update_post_meta( $post_id, '_opbf_url', $url );
 	update_post_meta( $post_id, '_opbf_button_text', $button_text );
+	update_post_meta( $post_id, '_opbf_show_booking_code', $show_booking_code );
 }
 
 /**
  * Renders the shortcode contents.
  *
- * @param  array  $attributes
- * @param  mixed  $content
- * @param  string  $tag
+ * @param array $attributes
+ * @param mixed $content
+ * @param string $tag
  *
  * @return string
  */
@@ -207,9 +224,10 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 	// override default attributes with user attributes
 	$opbf_attributes = shortcode_atts(
 		[
-			'url'         => '',
-			'button_text' => __('Search', 'onepagebooking-wp'),
-			'id'          => null,
+			'url'               => '',
+			'button_text'       => __( 'Search', 'onepagebooking-wp' ),
+			'show_booking_code' => true,
+			'id'                => null,
 		],
 		$attributes,
 		$tag
@@ -218,7 +236,8 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 	// If user has passed a form ID, attempt to load its metadata.
 	if ( ! is_null( $post_id = $opbf_attributes['id'] ) ) {
 		$opbf_attributes['url']         = get_post_meta( $post_id, '_opbf_url', single: true );
-		$opbf_attributes['button_text'] = get_post_meta( $post_id, '_opbf_button_text', single: true ) ?: $opbf_attributes['button_text'];
+		$opbf_attributes['button_text'] = get_post_meta( $post_id, '_opbf_button_text',
+			single: true ) ?: $opbf_attributes['button_text'];
 	}
 
 	if ( empty( $opbf_attributes['url'] ) ) {
@@ -230,20 +249,20 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 	wp_enqueue_style( 'VanillaCalendar' );
 	wp_enqueue_style( 'GlancrOnepagebookingJumpform' );
 
-    // The Salient theme adds lots of resets, z-index details etc. Add common overrides for the plugin to work OOTB.
-    if (wp_get_theme()->get_template() === 'salient') {
-	    enqueue_salient_css_overrides();
-    }
+	// The Salient theme adds lots of resets, z-index details etc. Add common overrides for the plugin to work OOTB.
+	if ( wp_get_theme()->get_template() === 'salient' ) {
+		enqueue_salient_css_overrides();
+	}
 
 	wp_enqueue_script( 'VanillaCalendar' );
 	wp_enqueue_script(
-		      'glancr-onepagebooking-jumpform-script',
+		'glancr-onepagebooking-jumpform-script',
 		deps: [ 'VanillaCalendar' ],
 		//ver: time(), // Change this to null for production
 		args: [ 'strategy' => 'defer' ]
 	);
 	wp_enqueue_script(
-		      'VanillaCalendarInit',
+		'VanillaCalendarInit',
 		deps: [ 'VanillaCalendar' ],
 		//ver: time(), // Change this to null for production
 		args: [ 'strategy' => 'defer' ]
@@ -264,14 +283,14 @@ function render_shortcode( array $attributes = [], mixed $content = "", string $
 function enqueue_salient_css_overrides(): void {
 	wp_enqueue_style(
 		handle: 'onepagebooking-wp-salient-overrides',
-		src:    plugin_dir_url( __FILE__ ) . 'css/salient-overrides.css',
-		deps:   [ 'GlancrOnepagebookingJumpform' ]
+		src: plugin_dir_url( __FILE__ ) . 'css/salient-overrides.css',
+		deps: [ 'GlancrOnepagebookingJumpform' ]
 	);
 }
 
 function load_textdomain(): void {
-	    load_plugin_textdomain( 'onepagebooking-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-    }
+	load_plugin_textdomain( 'onepagebooking-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
 
 function make_custom_post_type_translatable( $post_types, $is_settings ) {
 	if ( $is_settings ) {
@@ -281,5 +300,6 @@ function make_custom_post_type_translatable( $post_types, $is_settings ) {
 		// enables language and translation management for 'opbf_form'
 		$post_types['opbf_form'] = 'opbf_form';
 	}
+
 	return $post_types;
 }
