@@ -28,7 +28,7 @@ add_action( 'manage_opbf_form_posts_custom_column', __NAMESPACE__ . '\settings_c
 add_action( 'admin_notices', __NAMESPACE__ . '\display_custom_post_type_help_text' );
 
 // Shortcode assets and registration.
-register_assets();
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_assets' );
 add_filter( 'script_loader_tag', __NAMESPACE__ . '\set_module_type_for_scripts', 10, 3 );
 add_shortcode( 'opb_jumpform', __NAMESPACE__ . '\render_shortcode' );
 
